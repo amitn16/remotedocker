@@ -1,17 +1,11 @@
 pipeline {
-  agent {
-    node {
-      label 'java-docker-slave'
+    agent { dockerfile true }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+                sh 'svn --version'
+            }
+        }
     }
-
-  }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'node --version'
-        sh 'svn --version'
-      }
-    }
-
-  }
 }
